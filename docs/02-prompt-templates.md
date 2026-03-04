@@ -58,10 +58,12 @@ const CONFIG = {
 };
 
 const DEFAULT_PROJECT_CONTEXT = `oh-my-customcode is an npm package for customizing Claude Code.
-Key components: Agents (42), Skills (55), Rules (19), Guides (22).
+Key components: Agents (42), Skills (55), Rules (18), Guides (22).
 Commands: omcustom init, list, doctor.
 Tech: TypeScript/Bun, GitHub Actions, npm.`;
 ```
+
+> ※ `DEFAULT_PROJECT_CONTEXT`의 에이전트 수(42)는 코드 작성 시점 기준이며, 현재 운영 중인 에이전트 수(41)와 차이가 있습니다.
 
 **3단계 — 프롬프트 4계층 구조**
 
@@ -76,7 +78,7 @@ Tech: TypeScript/Bun, GitHub Actions, npm.`;
 │  └── Body (full text)                    │
 ├─────────────────────────────────────────┤
 │  Analysis Instructions                   │
-│  ├── 8 structured fields                 │
+│  ├── 9 structured fields                 │
 │  ├── JSON response format                │
 │  └── Language rules (한/영 혼용)          │
 ├─────────────────────────────────────────┤
@@ -117,7 +119,7 @@ for (const field of arrayFields) {
 
 | 항목 | Before | After |
 |------|--------|-------|
-| 응답 형식 | 자유 텍스트 | JSON 스키마 강제 |
+| 응답 형식 | 자유 텍스트 | JSON 구조 강제 |
 | 파싱 | 불가 | 타입 안전 파싱 (`AnalysisResult`) |
 | 에러 처리 | 없음 | 배열 필드 가드 + 코드 블록 제거 |
 | 컨텍스트 | 없음 | 프로젝트 구조 + 컴포넌트 목록 주입 |

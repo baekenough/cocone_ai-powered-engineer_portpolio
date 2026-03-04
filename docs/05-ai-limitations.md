@@ -2,7 +2,7 @@
 
 > ← [목차로 돌아가기](../README.md)
 
-AI를 실제 프로덕션 시스템에 통합하면서 마주친 **3가지 반복 패턴의 AI 한계**와 이를 체계적으로 극복한 경험입니다.
+AI를 실제 프로덕션 시스템에 통합하면서 마주친 **주요 AI 한계**와 이를 체계적으로 극복한 경험입니다.
 문제별로 탐지 메커니즘 → 수정 프로세스 → 예방 조치의 3단계 대응 체계를 구축했습니다.
 
 ## 5.1 구조적 드리프트 (Structural Drift)
@@ -86,5 +86,5 @@ AI는 기능 구현에 집중하는 경향이 있어 의존성 버전 관리와 
 | 구조적 드리프트 | mgr-sauron 8라운드 검증 | 자동 수정 + 재검증 | R017 push 전 필수 검증 |
 | 코드 결함 | 크로스 모델 검증 (Codex + Claude) | Before/After 비교 수정 | multi-model-verification 스킬 |
 | 보안 취약점 | security-audit CI + hooks | `npm audit fix` + overrides | R001/R002 강제 규칙 |
-| 규칙 위반 | git-delegation-guard hook | 실시간 경고 + 흐름 차단 | R010 오케스트레이터 규칙 |
+| 규칙 위반 | git-delegation-guard hook | 실시간 경고 (advisory, 흐름 비차단) | R010 오케스트레이터 규칙 |
 | 문서 불일치 | docs-sync CI + mgr-updater | 자동 동기화 | docs-validator 검증 |

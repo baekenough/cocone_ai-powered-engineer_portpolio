@@ -31,7 +31,7 @@ oh-my-customcode의 `codex-exec` 스킬을 독립 레포로 분리하여 skills.
 Before:
 ```javascript
 // Bug: child.killed becomes true immediately after SIGTERM
-// so the SIGKILL branch never executes — process may become zombie
+// so the SIGKILL branch never executes — process may linger without termination
 setTimeout(() => {
   if (!child.killed) {  // <- SIGTERM 후 항상 true이므로 이 블록 진입 불가
     child.kill('SIGKILL');
@@ -46,7 +46,7 @@ setTimeout(() => {
   try {
     child.kill('SIGKILL');
   } catch (e) {
-    // Process already terminated — ignore
+    // Process already exited (ESRCH) — safe to ignore
   }
 }, KILL_GRACE_PERIOD_MS);
 ```
@@ -77,7 +77,7 @@ const child = spawn(binary, args, {
 });
 ```
 
-**교훈**: non-interactive 래퍼에서 stdin을 `'ignore'`로 설정하지 않으면 자식 프로세스가 터미널 입력을 기다리며 무한 대기 상태가 됩니다. CLI 자동화에서 `stdio` 명시는 필수입니다.
+**교훈**: non-interactive 래퍼에서 stdin을 `'ignore'`로 설정하지 않으면 자식 프로세스가 열린 stdin 파이프의 EOF를 기다리며 무한 대기 상태가 됩니다. CLI 자동화에서 `stdio` 명시는 필수입니다.
 
 ---
 
@@ -89,7 +89,7 @@ Before:
 ```javascript
 // Non-standard exit codes passed through as-is
 result.exit_code = execResult.exitCode;
-// 137 (SIGKILL), 143 (SIGTERM), 126, 127 등 소비자가 처리 불가한 값 혼입
+// 137 (SIGKILL), 143 (SIGTERM) 등 시그널 기반 코드와 126 (command not executable), 127 (command not found) 등 셸 에러 코드가 혼입
 ```
 
 After:

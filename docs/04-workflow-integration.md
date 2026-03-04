@@ -30,7 +30,8 @@ oh-my-customcode는 12개의 GitHub Actions 워크플로우와 훅 시스템을 
 │  ├── push/PR -> ci.yml + claude-native-check.yml            │
 │  ├── issue created -> issue-analyzer.yml (Claude API)       │
 │  ├── release tag -> release.yml + release-notes.yml         │
-│  └── schedule -> security-audit.yml + docs-sync.yml         │
+│  ├── schedule -> security-audit.yml + docs-sync.yml         │
+│  └── PR/manual -> docs-validator.yml + deploy-test.yml      │
 ├─────────────────────────────────────────────────────────────┤
 │  Reusable Workflows (DRY)                                    │
 │  ├── reusable-claude-native.yml                              │
@@ -38,7 +39,8 @@ oh-my-customcode는 12개의 GitHub Actions 워크플로우와 훅 시스템을 
 │  └── reusable-issue-analyzer.yml                             │
 ├─────────────────────────────────────────────────────────────┤
 │  Local Hooks (.claude/hooks/hooks.json)                      │
-│  ├── PreToolUse: stage-blocker, git-delegation-guard         │
+│  ├── PreToolUse: stage-blocker, git-delegation-guard,        │
+│  │              dev-server-blocker                            │
 │  ├── PostToolUse: prettier, tsc, gofmt, ruff, console.log   │
 │  └── Stop: final console.log audit                           │
 └─────────────────────────────────────────────────────────────┘

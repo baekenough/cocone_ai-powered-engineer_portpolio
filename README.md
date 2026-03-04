@@ -17,7 +17,7 @@
 
 **GitHub**: [github.com/baekenough/oh-my-customcode](https://github.com/baekenough/oh-my-customcode)
 
-Claude Code를 커스터마이징하는 npm 패키지. 41개 에이전트, 55개 스킬, 19개 규칙, 22개 가이드 — 총 **136개 컴포넌트**로 구성된 AI 에이전트 프레임워크입니다. 오케스트레이터 패턴으로 메인 대화가 라우팅하고 서브에이전트가 실행합니다.
+Claude Code를 커스터마이징하는 npm 패키지. 41개 에이전트, 55개 스킬, 18개 규칙, 22개 가이드 — 총 **136개 컴포넌트**로 구성된 AI 에이전트 프레임워크입니다. 오케스트레이터 패턴으로 메인 대화가 라우팅하고 서브에이전트가 실행합니다.
 
 ### NuTalk (비공개)
 
